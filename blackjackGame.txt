@@ -1,0 +1,1468 @@
+<!-- 
+Title: Blackjack ICS3U Project
+By:Howard,Sajeiv,Kowan
+Date Started:2018/10/29
+Des:This is the html for the black jack 
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Blackjack
+		</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="code.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+		<!-- Google font link ^^-->
+	</head>
+
+	<body id="wallpaper">
+		<!-- START OF STARTING PAGE STATE -->
+		<div id="startingPageState" style="background: url(images/startWallpaper.png); background-size: 100%;">
+			<div id="startTitle">
+				Blackjack ICS3U
+			</div>
+
+			<div id="cntStateName">
+				Enter a Name:
+				<input type="text" id="playerName">
+			</div>
+
+			<!-- choose a character -->
+			<div id="cntCharacterSelect">
+				<div id="titleChooseCharacter">
+					Choose a Character
+				</div>
+
+				<div id="cntCharacterProfiles">
+					<div class="characters" id="images/aquaChara.jpg">
+						<img src="images/aquaChara.jpg" class="youShallNotPass">
+					</div>
+
+					<div class="characters" id="images/monsterM.jpg">
+						<img src="images/monsterM.jpg" class="youShallNotPass">
+					</div>
+
+					<div class="characters" id="images/konosuba.png">
+						<img src="images/konosuba.png" class="youShallNotPass">
+					</div>
+
+					<div class="characters" id="images/tomatoeChara.jpg">
+						<img src="images/tomatoeChara.jpg" class="youShallNotPass">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- END OF STARTING PAGE STATE -->
+
+		<!-- START OF GAME PAGE STATE -->
+		<div id="gamePageState" style="background-image: url(images/background.jpg)">
+
+			<!-- START OF DIV FOR MUSIC -->
+			<div id="cntMusic">
+				<div style="font-size: 35px; text-align: center; background-color: black; color: white;">
+					MUSIC
+				</div>
+				<div id="cntControls">
+					<button id="btnPrevious" class="groupMusic"><img src="images/prev.png" class="controls"></button>
+					<button id="btnPlay" class="groupMusic"><img src="images/play.png" class="controls"></button>
+					<button id="btnPause" class="groupMusic"><img src="images/pause.png" class="controls"></button>
+					<button id="btnNextSong" class="groupMusic"><img src="images/next.png" class="controls"></button>
+				</div>
+
+				<div id="currentlyPlaying">
+					Playing:#0 Kakegurui
+				</div>
+
+				<div id="musicList">
+					<div class="musicSelection">
+						#0 Kakegurui
+						<audio loop controls autostart="true" id="Kakegurui" class="songControls" style="width: 250px">
+						<source src="audio/Kakegurui.mp3" type="audio/mpeg">
+						</audio>
+					</div>
+					
+					<div class="musicSelection">
+						#1 SwordArtOnline
+						<audio loop controls id="SwordArtOnline" class="songControls" style="width: 250px">
+						<source src="audio/animeSAO.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#2 WakuseiRabbit
+						<audio loop controls id="WakuseiRabbit" class="songControls" style="width: 250px">
+						<source src="audio/WakuseiRabbit.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#3 PacketHero
+						<audio loop controls id="PacketHero" class="songControls" style="width: 250px">
+						<source src="audio/PacketHero.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#4 REANIMATE
+						<audio loop controls id="REANIMATE" class="songControls" style="width: 250px">
+						<source src="audio/REANIMATE.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#5 Noragami
+						<audio loop controls id="Noragami" class="songControls" style="width: 250px">
+						<source src="audio/Noragami.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#6 Noragami2
+						<audio loop controls id="Noragami2" class="songControls" style="width: 250px">
+						<source src="audio/Noragami2.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#7 CaravanPalace
+						<audio loop controls id="CaravanPalace" class="songControls" style="width: 250px">
+						<source src="audio/CaravanPalace.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+				</div>
+			</div>
+			<!--END OF DIV FOR MUSIC-->
+
+			<div id="cntDealerCards">
+
+			</div>
+
+			<div id="cntPlayerCards">
+
+			</div>
+
+			<div id="actions">
+				<img src="images/actionBarBackground.jpg" id="actionBarBackground">
+
+				<!-- the placeholder div is needed since when jquery fades out an element, it no longer exists, which shifts other elements to different spots. The placeholder div stops those random shifts on a fadeOut function -->
+				<div class="placeHolder">
+					<div id="cntPlaceBets" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Place Bet</div>
+						Place Bet: $<input type="text" id="txtPlaceBet" style="width: 70px" value="10">
+						<button id="btnPlaceBet">Place</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntHitHold" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Actions</div>
+						<button id="btnHold" class="btnAction">Stay</button>
+						<button id="btnHit" class="btnAction">Hit</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntRaiseBet" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Raise Bet</div>
+						Raise Bet By: $<input type="text" id="txtRaiseBet" style="width: 70px" value="0"><button id="btnRaiseBet">Raise</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntShowCards" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Show Cards</div>
+						<button id="btnShowCards" class="btnAction">Show Cards</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntNextRound"class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Next Round</div>
+						<button id="btnNextRound" class="btnAction">Next Round</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- work in progress anime bot -->
+			<div id="cntYumekoJabami">
+				<img id="yumekoJabami" src="images/animeGirl.gif">
+				<!-- YumekoJabami.png -->
+
+				<div id="speech">
+					<div id="textArea"></div>
+					<button id="btnNext">Next</button>
+				</div> 
+			</div>
+
+			<!-- info stuff that is kind of inportant -->
+			<div id="cntPotInfo">
+				<div id="cntPot">
+					$0
+				</div>
+
+				<div id="cntMultiply">
+					x2 In Possible Winnings
+				</div>
+			</div>
+
+			<div id="cntPlayerInfo">
+				<div id="playerNameShow">
+					
+				</div>
+
+				<div id="chosenCharacter">
+					
+				</div>
+
+				<div id="cntPlayerMoney">
+					$100
+				</div>
+			</div>
+
+			<!-- START OF DIV FOR ACHIEVEMENTS -->
+			<button id="achPermaShow">Achievement List</button>
+			
+			<div id="achPermaBox">
+				<div id="achTitle">Unlocked Achievements:</div>
+				<img src="images/ach/bigBoiEeks.png" id="achPermaClose">
+
+				<div id="cntAchDividers">
+					<div id="achCurious" class="achDivider">
+						<div class="achTypeHeader">
+							Curious...
+						</div>
+					</div>
+
+					<div id="achTutorial" class="achDivider">
+						<div class="achTypeHeader">
+							Tutorial?
+						</div>
+					</div>
+
+					<div id="achBust" class="achDivider">
+						<div class="achTypeHeader">
+							Where's The Buiscuit At?
+						</div>
+					</div>
+
+					<div id="achWin" class="achDivider">
+						<div class="achTypeHeader">
+							Eating Good Tonight!
+						</div>
+					</div>
+
+					<div id="achLose" class="achDivider">
+						<div class="achTypeHeader">
+							You Win Some...
+						</div>
+					</div>
+
+					<div id="achOthers" class="achDivider">
+						<div class="achTypeHeader">
+							What Else Is There?
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END OF DIV FOR ACHIEVEMENTS -->
+		</div>
+		<!-- END OF GAME PAGE STATE -->
+
+		<!-- START OF END PAGE -->
+		<div id="endPageState">
+			<div id="youSuck">
+				OF ALL THE PEOPLE I'VE FACED, YOU ARE BY FAR THE WORST. MAYBE FIX THAT BRAIN OF YOURS!
+			</div>
+		</div>
+		<!-- END OF END PAGE -->
+
+		<div id="madeByState">
+			<img src="images/madeBy.jpg" id="madeBy">
+		</div>
+
+		<!-- START OF ACH NOTIFICATION BOX -->
+		<div id="achNotifiction">
+			
+		</div>
+		<!-- END OF ACH NOTIFICTION BOX -->
+	</body>
+</html>
+
+/*
+Title: Blackjack ICS3U Project
+By:Howard,Sajeiv,Kowan
+Date Started:2018/10/29
+Des:This is the code for the black jack 
+*/
+"use strict";
+//global variables
+let playerCardProp = {
+	worth:null,
+	path:null, 
+	total:null, 
+	cardNumber:0,
+};
+
+let playerProp = {
+	playerName:"",
+	playerChara: "",
+	money:100,
+	pot:0,
+	state:"place",
+	addSubt:0,
+	instruction:0
+}
+
+let dealerCardProp = {
+	worth:null, 
+	path:null, 
+	total:null, 
+	cardNumber:0
+};
+
+//music variables
+let music = [
+	"Kakegurui",
+	"SwordArtOnline",
+	"WakuseiRabbit",
+	"PacketHero",
+	"REANIMATE",
+	"Noragami",
+	"Noragami2",
+	"CaravanPalace",
+	]
+
+let chosenMusic = "";
+let selectedTrackNumber = 7;
+
+//ach variables
+//it was not untill after the group realized that  "imges/ach/" was repeated so many times that it could have been added into the function... 
+//arrays start from 0
+let ach = {
+	//click on title ach
+	countFirstClick:0,
+	desFirstClick: ["Clicked on the Balackjack banner on the homepage once","Clicked on the Balackjack banner on the homepage twice","Clicked on the Balackjack banner on the homepage three times"],
+	pathFirstClick:["images/ach/thirdClick.jpg","images/ach/secondClick.jpg","images/ach/firstClick.jpg"],
+	firstClick: ["A bit Cuirous","Slightly More Curious","Overwhelming Curiosity"],
+	//tutorial ach
+	tutorial: ["Don't Tell Me What To Do","I Kinda Get It","Knowledge Is Power"],
+	//bust ach
+	countBust: 0,
+	desBust: ["Hit and busted once with at least $10 placed","Hit and busted twice with at least $10 placed","Hit and busted three times with at least $10 placed"],
+	pathBust:["images/ach/thirdBust.jpg","images/ach/secondBust.jpg","images/ach/firstBust.jpg"],
+	achBust:["Risk It For The Buiscuit","I Need That Buiscuit","It's only time until..."],
+	//winning ach
+	countWin: 0,
+	desWin: ["Win against the dealer once","Win against the dealer twice","Win against the dealer three times"],
+	pathWin: ["images/ach/thirdWin.jpg","images/ach/secondWin.jpg","images/ach/firstWin.jpg"],
+	achWin: ["Beginners Luck","Double Trouble","Unstopabale force"],
+	//lose ach
+	countLose: 0,
+	desLose: ["Lose to the dealer without going over 21 once","Lose to the dealer without going over 21 twice","Lose to the dealer without going over 21 three times"],
+	pathLose: ["images/ach/thirdLose.jpg","images/ach/secondLose.jpg","images/ach/firstLose.jpg"],
+	achLose: ["To Know Defeat...","Gamble Responsibly","The Greatest Loser"],
+	//others[achieved,title,path]
+	achAllIn: [false, "If You Got Guts...","images/ach/allIn.jpg"],
+	achThisClose: [false, "I'm THIS Close...","images/ach/thisClose.jpg"],
+	achItSeems: [false, "It Seems That I Am Broke...","images/ach/itSeems.jpg"],
+	//non-specific ach variable
+	number:0,
+}
+
+$(document).ready(function($) {
+	//Immideately update chosenMusic varaible
+	chosenMusic = music[selectedTrackNumber];
+
+	//START OF CHARACTER CREATON PAGE
+	$(".characters").click(function(event){
+		//get the id of the clicked character and update name
+		playerProp.playerChara = $(this).attr("id");	
+		playerProp.playerName = $("#playerName").val();
+
+		//start playing music
+		$("#btnPlay").css("background-color", "red");
+		document.getElementById(chosenMusic).play();
+		updatePlayingSong();
+
+		//fade in and out of states
+		$("#startingPageState").fadeOut();
+		$("#madeByState").fadeIn(1000).delay(5500).fadeOut(2000);
+		$("#gamePageState").delay(5500).fadeIn(2000);
+		$(".songControls").hide();
+
+		//Start of click function
+		if(playerProp.playerName==""){
+			//If the player enters no name, there won't be a space between the name and exclamation mark
+			$("#textArea").html("Hey there!\nClick the 'next' button to learn about the rules of Blackjack and how the game works!");
+			playerProp.playerName = "DefaultMcDefaultFace";
+		}
+		else{
+			$("#textArea").html("Hey there " + playerProp.playerName +"!\nClick the 'next' button to learn about the rules of Blackjack and how this game works!");
+		}
+
+		//update profile
+		$("#playerNameShow").html(playerProp.playerName);
+		$("#chosenCharacter").append('<img src="'+playerProp.playerChara+'" id="playerProfilePic">')
+	});
+
+	$("#startTitle").click(function(event) {
+		//test achievement code
+		if(ach.countFirstClick <= 2){
+			checkAch(ach.firstClick[ach.countFirstClick],ach.pathFirstClick[ach.countFirstClick],"achCurious",ach.desFirstClick[ach.countFirstClick]);
+			ach.countFirstClick++;
+		}
+	});
+	//END OF CHARACTER CREATION PAGE
+
+	//START OF MUSIC CONTROLS
+
+	//plays music
+	$("#btnPlay").click(function(event){
+		//changes pause and play button
+		$("#btnPlay").css("background-color", "red");
+		$("#btnPause").css("background-color", "orange");
+		//plays music
+		document.getElementById(chosenMusic).play();
+		updatePlayingSong();
+	});
+
+	//pauses currently playing music
+	$("#btnPause").click(function(event){
+		//changes pause and play button
+		$("#btnPause").css("background-color", "Red");
+		$("#btnPlay").css("background-color", "orange");
+		//pauses music
+		document.getElementById(chosenMusic).pause();
+		updatePlayingSong();
+	});
+
+	$("#btnNextSong").click(function(event){
+		//pauses currently playing song
+		document.getElementById(chosenMusic).pause();
+		//selectedTrackNumber++ must go first before if statement or it breaks for some reason
+		selectedTrackNumber++;
+
+		//loops back to the begining of the playlist
+		if(selectedTrackNumber == music.length){
+			selectedTrackNumber = 0;
+		}
+
+		//plays updated song
+		chosenMusic = music[selectedTrackNumber];
+		document.getElementById(chosenMusic).play();
+		updatePlayingSong();
+		//changes pause and play button
+		$("#btnPause").css("background-color", "orange");
+		$("#btnPlay").css("background-color", "red");
+	});
+
+	$("#btnPrevious").click(function(event){
+		//pauses currently playing song
+		document.getElementById(chosenMusic).pause();
+
+		//loops back to the end of the playlist
+		if(selectedTrackNumber == 0){
+			selectedTrackNumber = music.length;
+		}
+
+		//selectedTrackNumber-- must go after if statement or it breaks for some other reason
+		selectedTrackNumber--;
+		//plays updated song
+		chosenMusic = music[selectedTrackNumber];
+		document.getElementById(chosenMusic).play();
+		updatePlayingSong();
+		//changes pause and play button
+		$("#btnPause").css("background-color", "orange");
+		$("#btnPlay").css("background-color", "red");
+	});
+	//END OF MUSIC CONTROLS
+
+	//START OF PLAYER ACTIONS
+
+	//place first bet
+	$("#btnPlaceBet").click(function(event){
+		if(playerProp.state == "place"){
+			//amount of money bet assigned to variable
+			playerProp.addSubt = $("#txtPlaceBet").val();
+			//ach tutoral check
+			if(playerProp.instruction < 4){
+				checkAch(ach.tutorial[0],"images/ach/noKnowledge.jpg","achTutorial","Skipped the instructions");
+			}
+
+			else if(playerProp.instruction < 9){
+				checkAch(ach.tutorial[1],"images/ach/halfKnowledge.jpg","achTutorial","Read half the instructions");
+			}
+
+			else if(playerProp.instruction < 99){
+				checkAch(ach.tutorial[2],"images/ach/fullKnowledge.jpg","achTutorial","Read all the instructions");
+			}
+
+			//sets player instruction to 99 so no more instructions will show up
+			playerProp.instruction = 99;
+
+			//check for negative bets
+			if(playerProp.addSubt < 0){
+				animationFadeIn();
+				$("#textArea").html("No negative bets please. I don't even know how that would work...");
+			}
+
+			//valid bet
+			 else if(playerProp.addSubt <= playerProp.money){
+			 	//check for ach allIn
+			 	if(playerProp.addSubt == playerProp.money && !ach.achAllIn[0]){
+			 		checkAch(ach.achAllIn[1],ach.achAllIn[2],"achOthers","Placed a bet equal to all owned money");
+			 		ach.achAllIn[0] = true;
+			 	}
+
+			 	//check for ach ThisClose
+			 	if((playerProp.money - playerProp.addSubt) == 1 && !ach.achThisClose[0]){
+			 		checkAch(ach.achThisClose[1],ach.achThisClose[2],"achOthers","Leave $1 to play again next game");
+			 		ach.achThisClose[0] = true;
+			 	}
+
+			 	//check for ach itSeems
+			 	if(playerProp.addSubt == 0 && !ach.achItSeems[0]){
+			 		checkAch(ach.achItSeems[1],ach.achItSeems[2],"achOthers","Placed $0 in the pot");
+			 		ach.achItSeems[0] = true;
+			 	}
+			 	//where ever you see these two lines, it just updates what the dealer is saying with an animation
+				animationFadeIn();
+				$("#textArea").html("Time to deal the cards!");
+				//change player state
+				playerProp.state = "hitHold";
+
+				//fade out
+				$("#cntPlaceBets").fadeOut('slow/400/fast');
+				playerProp.addSubt = $("#txtPlaceBet").val();
+				playerProp.pot =+ playerProp.addSubt;
+				playerProp.money -= playerProp.addSubt;
+
+				//display pot and update money
+				$("#cntPot").html("$"+playerProp.pot);
+				$("#cntPlayerMoney").html("$"+playerProp.money);
+
+				//generate dealer cards
+				for(let x = 0;x < 2;x++){
+					drawDealerCard();
+					//puts cover over the first dealer card
+					if(x == 0){
+						$("#cntDealerCards").append('<img src="cards/card55.JPG" id="dealerCardCover" class="overlap">');
+					}
+				}
+
+				//generate player cards
+				for(let y = 0; y<2;y++){
+					drawPlayerCard();
+				}
+			}
+
+			//bet is greater than player money
+			else{
+				animationFadeIn();
+				$("#textArea").html("That bet is an invalid entry. It is either a value greater than your balance or it isn't a number. Please try again.");
+			}
+		}
+	});//end of place bet 
+
+	//player hit
+	$("#btnHit").click(function(event){
+		if(playerProp.state == "hitHold"){
+			//simple draw card from function
+			drawPlayerCard();
+
+			//check if bust
+			if(playerCardProp.total > 21){
+				playerProp.state = "nextRound";
+				//hide all other elements in action box after bust
+				$("#cntHitHold").fadeOut('slow/400/fast');
+				$("#cntRaiseBet").fadeOut('slow/400/fast');
+				$("#cntShowCards").fadeOut('slow/400/fast');
+				//winner icon
+				$("#cntDealerCards").append('<img src="images/winner.png" class="overlap">');
+
+				animationFadeIn();
+				$("#textArea").html("Looks like you busted and I win! Try to be a bit more careful next time!");
+
+				//bust ach
+				if(ach.countBust <= 2 && playerProp.addSubt >= 10){
+					checkAch(ach.achBust[ach.countBust],ach.pathBust[ach.countBust],"achBust",ach.desBust[ach.countBust]);
+					ach.countBust++;
+				}
+			}
+		}
+
+		//tell player they cannot hit at current time
+		else{
+			animationFadeIn();
+			$("#textArea").html("You cannot hit at the current time.");
+		}
+	});//end of click hit event
+
+	//player hold
+	$("#btnHold").click(function(event) {
+		if(playerProp.state == "hitHold"){
+			//change player state to raise
+			playerProp.state = "raise";
+
+			//fade out
+			$("#cntHitHold").fadeOut('slow/400/fast');
+
+			//dealer draw or not draw
+			while(dealerCardProp.total <=16){
+				animationFadeIn();
+				$("#textArea").html("I am going to decide to draw more cards.");
+
+				drawDealerCard();
+			}
+		}		
+
+		//tell player they cannot hold at current time
+		else{
+			animationFadeIn();
+			$("#textArea").html("You cannot hold at the current time.");
+		}
+	});//end of player hold
+
+	//player raise bet
+	$("#btnRaiseBet").click(function(event) {
+		if(playerProp.state == "raise"){
+			//assign raise bet to variable
+			playerProp.addSubt =+ $("#txtRaiseBet").val();
+
+			//check that bet is lower than addSubt
+			if(playerProp.addSubt < 0){
+				$("#textArea").html("No negative raises please. I don't even know how that will work...");
+				animationFadeIn();
+			}
+
+			else if(playerProp.addSubt > playerProp.pot){
+				$("#textArea").html("Your bet cannot be higher than your placed bet!");
+				animationFadeIn();
+			}
+
+			else if(playerProp.addSubt<=playerProp.money){
+				//change playerstate to showCards
+				playerProp.state = "showCards";
+
+				//fade out
+				$("#cntRaiseBet").fadeOut('slow/400/fast');
+
+				//update player money and pot
+				playerProp.pot += Number(playerProp.addSubt);
+				playerProp.money -= playerProp.addSubt;
+
+				$("#cntPot").html("$"+playerProp.pot);
+				$("#cntPlayerMoney").html("$"+playerProp.money);
+
+				animationFadeIn();
+				$("#textArea").html("Ok then. Time to show our cards!");	
+			}
+
+			else{
+				animationFadeIn();
+				$("#textArea").html("That raise is more than what you have. Try something lower.");
+			
+			}
+		}
+
+		//tell player they cannot raise at currnet time
+		else{
+			animationFadeIn();
+			$("#textArea").html("You cannot raise your bet at the current time.");
+		}
+	});//end of player raise
+
+	//show cards
+	$("#btnShowCards").click(function(event) {
+		if(playerProp.state == "showCards"){
+			//change player state to deal
+			playerProp.state = "nextRound";
+
+			//fade out
+			$("#cntShowCards").fadeOut('slow/400/fast');
+
+			//show cards
+			$("#dealerCardCover").fadeOut('slow/400/fast');
+
+			//check who wins
+
+			//dealer bust
+			if(dealerCardProp.total > 21){
+				playerProp.money += (playerProp.pot*2); 
+				$("#cntPlayerMoney").html("$"+playerProp.money);
+				$("#cntPlayerCards").append('<img src="images/winner.png" class="overlap">');
+				animationFadeIn();
+				$("#textArea").html("Whoops! Looks like its your win. I went over 21.");
+
+				//player in ach
+				if(ach.countWin <= 2){
+					checkAch(ach.achWin[ach.countWin],ach.pathWin[ach.countWin],"achWin",ach.desWin[ach.countWin]);
+					ach.countWin++;
+				}
+			}
+
+			//player wins with higher total
+			else if(playerCardProp.total > dealerCardProp.total){
+				playerProp.money += (playerProp.pot*2); 
+				$("#cntPlayerMoney").html("$"+playerProp.money);
+				$("#cntPlayerCards").append('<img src="images/winner.png" class="overlap">');
+				animationFadeIn();
+				$("#textArea").html("Nice, you won with a higher total.");
+
+				//player ach win
+				if(ach.countWin <= 2){
+					checkAch(ach.achWin[ach.countWin],ach.pathWin[ach.countWin],"achWin",ach.desWin[ach.countWin]);
+					ach.countWin++;
+				}
+			}
+
+			//player loses with lower total
+			else if(playerCardProp.total < dealerCardProp.total){
+				$("#cntPlayerMoney").html("$"+playerProp.money);
+				$("#cntDealerCards").append('<img src="images/winner.png" class="overlap">');
+				animationFadeIn();
+				$("#textArea").html("Hahaha, you lost to me!");
+
+				//player ach lose
+				if(ach.countLose <= 2){
+					checkAch(ach.achLose[ach.countLose],ach.pathLose[ach.countLose],"achLose",ach.desLose[ach.countLose]);
+					ach.countLose++;
+				}
+			}
+			//Tie
+			else if(playerCardProp.total == dealerCardProp.total){
+				playerProp.money += playerProp.pot;
+				$("#cntPlayerMoney").html("$"+playerProp.money);
+				animationFadeIn();
+				$("#textArea").html("Seems that it ends in a tie.");
+			}
+		}
+
+		//tell player they cannot show cards at currnet time
+		else{
+			animationFadeIn();
+			$("#textArea").html("You cannot show cards at the current time.");
+		}
+	});//end of show cards
+
+	//next round
+	$("#btnNextRound").click(function(event) {
+		//check if player has 0 money
+		if(playerProp.money == 0 && playerProp.state == "nextRound"){
+			$("#gamePageState").fadeOut('slow/400/fast');
+			$("#endPageState").fadeIn('slow/400/fast');
+		}
+
+		else if(playerProp.state == "nextRound"){
+			$("#cntDealerCards").empty();
+			$("#cntPlayerCards").empty();
+			//next round
+			animationFadeIn();
+			$("#textArea").html("Onto the next round then!");
+
+			//reset variables
+			playerCardProp.cardNumber = 0;
+			dealerCardProp.cardNumber = 0;
+			playerProp.state = "place";
+			playerProp.pot = 0;
+			playerCardProp.total = 0;
+			dealerCardProp.total = 0;
+			$("#cntPot").html("$"+playerProp.pot);
+
+			//fade in all covers
+			$("#cntPlaceBets").fadeIn('slow/400/fast');
+			$("#cntHitHold").fadeIn('slow/400/fast');
+			$("#cntRaiseBet").fadeIn('slow/400/fast');
+			$("#cntShowCards").fadeIn('slow/400/fast');
+		}
+
+		//tell player they show cards at current time
+		else{
+			animationFadeIn();
+			$("#textArea").html("This round is not even over yet.");
+		}
+	});
+	//END OF PLAYER ACTIONS
+
+	//updates Yumeko text area for instructions	
+	$("#btnNext").click(function(event) {
+		explainRules(playerProp.instruction);
+		playerProp.instruction++;
+		animationFadeIn();
+	});
+
+	//START OF ACHIEVEMENTS BUTTONS
+	$("#achPermaShow").click(function(event) {
+		$("#achPermaBox").fadeIn();
+	});
+
+	$("#achPermaClose").click(function(event) {
+		$("#achPermaBox").fadeOut();
+	});
+	//END OF ACHIEVEMENTS BUTTONS
+
+	//hides all pages but the player profile creation page
+	$("#gamePageState").hide();
+	$("#endPageState").hide();
+	$("#achPermaBox").hide();
+});//end of .ready function
+
+
+/*The following functions were created since drawing cards is repeated alot. 
+Making functions makes it easier to read code and lower the total lines of 
+code in the ......... well code.*/
+
+function checkCardValue(checkedValue){//calculates realk card value
+	checkedValue = checkedValue%13;
+
+	if(checkedValue == 0 || checkedValue>=10){
+		return 10;
+	}
+
+	else{
+		return checkedValue;
+	}
+}//end of checkCardValue function
+
+
+function updateTotal(worth,total){//updates .worth
+	worth = checkCardValue(worth);
+	total += worth;
+	return total;
+}//end of update total function
+
+function drawPlayerCard(){//player draw card function
+	playerCardProp.worth = Math.round(1+Math.random()*51);
+
+	//do the path making thingy using varibale dealerCardProp.worth
+	playerCardProp.path = "cards/card"+playerCardProp.worth+".JPG";
+
+	//create the card image
+	$("#cntPlayerCards").append('<img src="'+playerCardProp.path+'" id="y'+playerCardProp.cardNumber+'" class="overlap">');
+	$("#y"+playerCardProp.cardNumber).css('margin-left',(playerCardProp.cardNumber*30)+'px');
+	//calculate value of cards and updates values
+	playerCardProp.total = updateTotal(playerCardProp.worth,playerCardProp.total);
+
+	//update card number and return value
+	playerCardProp.cardNumber++;
+	return playerCardProp.cardNumber;
+}//end of player draw card function
+
+function drawDealerCard(){//dealer draw card function
+	dealerCardProp.worth = Math.round(1+Math.random()*51);
+
+	//create dealer card path
+	dealerCardProp.path = "cards/card"+dealerCardProp.worth+".JPG";
+
+	//do the thing that creates the cards
+	$("#cntDealerCards").append('<img src="'+dealerCardProp.path+'" id="x'+dealerCardProp.cardNumber+'" class="overlap">');
+	$("#x"+dealerCardProp.cardNumber).css({'margin-left':(dealerCardProp.cardNumber*30)+'px'});
+	$("#x"+dealerCardProp.cardNumber).fadeIn('slow/400/fast');
+
+	//calculate the value of dealer cards and update values
+	dealerCardProp.total = updateTotal(dealerCardProp.worth,dealerCardProp.total)
+
+	//update card number and return value
+	dealerCardProp.cardNumber++;
+	return dealerCardProp.cardNumber;
+}//end of dealer card draw function
+
+function explainRules(instruction){//explain rule function
+	if(instruction == 0){
+		$("#textArea").html("The rules of Blackjack are simple. The player with the closer total card value of '21' wins");
+	}
+
+	else if(instruction == 1){
+		$("#textArea").html("You start off with 2 cards. If you go over 21, you automatically lose. You'll be facing me in this game!");
+	}
+
+	else if(instruction == 2){
+		$("#textArea").html("You have $100 to bet. If you beat me, it doubles. If you lose, you lose all of it. I'll be looking forward to getting your money!");
+	}
+
+	else if(instruction == 3){
+		$("#textArea").html("First, you need to place a starting bet. This is done in the first box on the left. (Both players don't know their cards)");
+	}
+
+	else if(instruction == 4){
+		$("#textArea").html("Second, you choose to either hit or hold. If you hit, you get another card. If you hold, you stick with your current hand.");
+	}
+
+	else if(instruction == 5){
+		$("#textArea").html("You can keep on hitting until you either go over 21 or decide to hold. You can even hold immediately without hitting.");
+	}
+
+	else if(instruction == 6){
+		$("#textArea").html("Third, you can choose to raise your current bet. This is done after, which means you know your final hand.");
+	}
+
+	else if(instruction == 7){
+		$("#textArea").html("Finally, you can see my final card with the 'show card' button. This is the moment of truth. This will determine if you won the bet or not. ");
+	}
+
+	else if(instruction == 8){
+		$("#textArea").html("The round will be over. Now you continue by clicking the 'Next Round' button. You keep on playing until you lose all of your money.");
+	}
+
+	else if(instruction == 9){
+		$("#textArea").html("If you need any more help, just look back to this box. It will provide game information such as round results and restrictions! That is all! Now best of luck!");
+	}
+
+	else{
+		$("#textArea").html("...");
+	}
+}//end of explain rule function
+
+function animationFadeIn(){//Yumeko fade in animation
+	$("#cntYumekoJabami").fadeOut(300);
+	$("#cntYumekoJabami").fadeIn(300);
+}//end of Yumeko fade in animation
+
+//This could have easily not been a function but it just as easily can be a function.
+function updatePlayingSong(){//this function updates the "Playing:" text in the music box
+	$("#currentlyPlaying").html("Playing:#"+selectedTrackNumber+" "+chosenMusic)
+}//end of updatePlayingSong function
+
+function checkAch(displayedAch,pathAch,typeAch,fadeAch){//update achievemnet function
+	//create the achievement box
+	$("#achNotifiction").prepend('<div class="achBox" id="ach'+ach.number+'"><img src="'+pathAch+'" class="achImg"><div class="achText">Achievement get:<br>'+displayedAch+'<br></div></div>');
+	$("#ach"+ach.number).fadeIn().delay(2500).fadeOut();
+	//stuff inside of achievement box
+	$("#"+typeAch).append('<div class="achBox" id="ach'+ach.number+'"><img src="'+pathAch+'" class="achImg"><div class="achText">Achievement get:<br>'+displayedAch+'<br></div></div>');
+	//hover thing?
+	$("#ach"+ach.number+",achNotifiction").append('<div class="achDes">'+fadeAch+'</div>');
+	ach.number++;
+	return ach.number;
+}//end of checkAch function
+
+/*
+Title: Blackjack ICS3U Project
+By:Howard,Sajeiv,Kowan
+Date Started:2018/10/29
+Des:This is the css for the black jack 
+*/
+
+/*START OF GENERAL STYLES*/
+body{
+	margin: 0;
+	font-family: 'Courgette', cursive;
+}
+h1{
+	font-family: pixel;
+}
+
+button{
+	background-color: transparent;
+	border-color: red;
+	color: white;
+	font-family: 'Courgette', cursive;
+}
+
+button:hover{
+	background-color: white;
+	color: black;
+	cursor: pointer;
+}
+
+li{
+	color: white;
+}
+
+html{
+	overflow: hidden;
+}
+
+.group1{
+	background-image: url(images/gamblingWallpaper.jpg);
+}
+
+.overlap{
+	display: inline-block;
+	position: absolute;
+	margin-left: 0px;
+}
+/*END OF GENERAL STYLES*/
+
+/*START OF PLAYER AND DEALER STYLES*/
+#cntDealerCards{
+	margin-left: 40%;
+	display: inline-block;
+	position: absolute;
+	top: 10px;
+}
+
+#cntPlayerCards{
+	margin-left: 40%;
+	bottom: 35%;
+	display: inline-block;
+	position: absolute;
+}
+
+#cntPlayerMoney{
+	width: 180px;
+	height: 30px;
+	font-size: 18px;
+	padding: 10px;
+	text-align: center;
+	background-color: white;
+	position: absolute;
+	border-style: solid;
+}
+
+#cntPlayerInfo{
+	position: absolute;
+	border-style: solid;
+	bottom: 10px;
+	right: 10px;
+	height: 309px;
+	width: 203px;
+}
+/*END OF PLAYER AND DEALER STYLES*/
+
+/*START OF POT STYLE*/
+#cntPot{
+	width: 400px;
+	height: 100px;
+	border-style: solid;
+	background-color: white;
+	position: absolute;
+	font-size: 80px;
+}
+
+#cntPotInfo{
+ 	width: 600px;
+	height: 105px;
+	top:40%;
+	border-style: solid;
+	position: absolute;
+	margin-left: 35%;
+}
+
+#cntMultiply{
+	position: absolute;
+	height: 87px;
+	width: 200px;
+	background-color: black;
+	color: white;
+	right: 0; 
+	padding: 10px;
+	text-align: center;
+	font-size: 30px;
+}
+/*END OF POT STYLE*/
+
+/*START OF SIDEBAR ACTION STYLE*/
+.actionGroup{
+	overflow: hidden;
+	border-style: solid;
+	height: 100%;
+	width: 395px;
+	text-align: center;
+	position: relative;
+	color: white;
+	border-color: black;
+}
+
+.placeHolder{
+	height: 19.4%;
+	width: 395px;
+	position: relative;
+	border-style: solid;
+	border-color: black;
+}
+
+.btnAction{
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+}
+
+#actions{
+	width: 400px;
+	height: 99%;
+	position: absolute;
+	border-style: solid;
+}
+
+#actionBarBackground{
+	position: absolute;
+	height: 100%;
+	width: 400px;
+	overflow: hidden;
+}
+
+.actionHeader{
+	padding: 5px;
+	font-size: 40px;
+}
+/*END OF SIDEBAR ACTION STYLE*/
+
+/*START OF DEALER BOT STYLE*/
+#animeGirl{
+	height: 250px;
+}
+
+#animeBot{
+	position: absolute;
+	height:200px;
+	width:100px;
+	right: 10px;
+	top: 160px;
+}
+
+#speech{
+	height: 150px;
+	position: absolute;
+	width: 200px;
+	bottom: 0;
+	background-image: url(images/grey.png);
+}
+
+#textArea{
+	position: absolute;
+	top: 0px;
+	color: white;
+	font-family: 'Courgette', cursive;
+	font-size: 14px;
+	border-style: none;
+	padding: 10px;
+}
+
+#cntYumekoJabami{
+	width: 200px;
+	height: 315px;
+	position: absolute;
+	border-style: solid;
+	right: 10px;
+	top: 10px;
+	overflow: hidden;
+}
+
+#yumekoJabami{
+	width: 100%;
+	height: 53%;
+}
+
+#btnNext{
+	background-color: transparent;
+	border-color: red;
+	position: absolute;
+	border-width: 3px;
+	width: 100%;
+	height: 30px;
+	bottom: 0px;
+	right: 0;
+}
+
+#btnNext:hover{
+	background-color: white;
+	color: black;
+}
+/*END OF DEALER BOT STYLE*/
+
+/*START OF STATE STYLES*/
+#startTitle,#achTitle{
+	position: relative;
+	text-align: center;
+	font-size: 100px;
+	color:red;
+	border-style: solid;
+	background-color: black;
+	width: 75%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#startingPageState{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#cntStateName{
+	margin-left: auto;
+	margin-right: auto;
+	color: white;
+	margin-top: 100px;
+	position: relative;
+	width: 450px;
+	font-size: 25px;
+}
+
+#gamePageState{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+#gameImg{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+#endPageState{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-size: 100%;
+	background-image: url(images/whatALoser.jpg);
+}
+
+#youSuck{
+	position: absolute;
+	top:50%;
+	color: white;
+	left:35%;
+	width: 300px;
+	text-align: center;
+	height: 300px;
+}
+/*END OF STATE STYLES*/
+
+/*START OF PLAYER CAHRACTER STYLES*/
+#cntCharacterSelect{
+	background-color: white;
+	width:640px;
+	height: 200px;
+	border-style: solid;
+	border-color: white;
+	position: absolute;
+	left: 35%;
+}
+
+#titleChooseCharacter{
+	color: black;
+	border-style: solid;
+	text-align: center;
+	font-size: 20px;
+	background-color: white;
+}
+
+.characters{
+	border-style: solid;
+	width: 150px;
+	height: 150px;
+	margin-top: 5px;
+	bottom: 5px;
+	display: inline-block;
+}
+
+.characters:hover{
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+.youShallNotPass{
+	width: 100%;
+}
+
+#playerNameShow{
+	width: 180px;
+	height: 30px;
+	border-style: solid;
+	background-color: white;
+	text-align: center;
+	font-size: 18px;
+	padding: 10px;
+}
+
+#playerProfilePic{
+	width: 100%;
+	border-style: solid;
+}
+
+#chosenCharacter{
+	width: 200px;
+	height: 200px;
+}
+/*END OF PLAYER CHARACTER STYLES*/
+
+/*START OF MUSIC STYLES*/
+#cntControls{
+	bottom: 10px;
+	position: absolute;
+}
+
+.musicSelection{
+	border-style: solid;
+	border-color: red;
+	color: white;
+	position: relative;
+	width: 90%;
+	padding: 5px;
+	background-color: black;
+}
+
+#musicList{
+	border-style: solid;
+	border-color: white;
+	height: 150px;
+	width: 90%;
+	position: absolute;
+	top: 95px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+#currentlyPlaying{
+	border-style: solid;
+	height: 30px;
+	border-color: red;
+	text-align: center;
+	color: white;
+	background-color: black;
+	text-align: center;
+}
+
+.controls{
+	width: 100%;
+}
+
+#cntMusic{
+	background-image: url(images/animeMusic.jpg);
+	background-size: 100%;
+	border-style: solid;
+	position: absolute;
+	height:300px;
+	width:215px;
+	padding: 10px;
+	right: 250px;
+	bottom: 10px;
+}
+
+.groupMusic{
+	background-color: orange;
+	width:50px;
+	height: 50px;
+}
+/*END OF MUSIC STYLES*/
+
+/*START OF ACH STYLES*/
+#achNotifiction{
+	width: 420px;
+	position: absolute;
+	bottom: 0;
+	left: 40%;
+}
+
+.achBox{
+	border-style: solid;
+	border-color: #663d28;
+	height: 50px;
+	width: 400px;
+	border-width: 5px;
+	border-radius: 10px;
+	background-color: #af6741;
+	position: relative;
+	display: block;
+	padding: 5px;
+}
+
+.achText{
+	display: inline-block;
+	position: relative;
+	text-align: center;
+	width: 80%;
+	bottom: 10px;
+}
+
+.achImg{
+	height: 45px;
+	width: 50px;
+	border-style: solid;
+	border-radius: 5px;
+	position: relative;
+	display: inline-block;
+}
+
+#achPermaBox{
+	border-style: solid;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: white;
+}
+
+#achPermaClose{
+	width: 50px;
+	height: 50px;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+
+#achPermaShow{
+	right: 10px;
+	position: absolute;
+	top: 47%;
+	height: 50px;
+	width: 200px;
+	background-color: black;
+}
+
+#achPermaShow:hover{
+	background-color: white;
+}
+
+#achPermaClose:hover{
+	cursor: pointer;
+}
+
+.achTypeHeader{
+	font-size: 30px;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.achDivider{
+	border-style: solid;
+	width: 420px;
+	padding: 10px;
+	height: 250px;
+	display: inline-block;
+	overflow: hidden;
+}
+
+#cntAchDividers{
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+.achDes{
+	position: absolute; 
+	top: 10px;
+	left: 65px;
+	transition: ease 0.5s;
+	opacity: 0;
+}
+
+.achBox:hover > .achText{
+	opacity: 0;
+}
+
+.achBox:hover > .achDes{
+	opacity: 1;
+}
+
+.achText{
+	transition: ease 0.5s;
+}
+/*END OF ACH STYLES*/
+
+/*START OF MADEBY STYLES*/
+#madeByState{
+	width: 100%;
+	height: 100%;
+}
+
+#madeBy{
+	width: 100%;
+	height: 100%;
+}
+/*END OF MADEBY STYLES*/

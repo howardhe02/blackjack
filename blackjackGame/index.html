@@ -1,0 +1,292 @@
+<!-- 
+Title: Blackjack ICS3U Project
+By:Howard,Sajeiv,Kowan
+Date Started:2018/10/29
+Des:This is the html for the black jack 
+ -->
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			Blackjack
+		</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="code.js"></script>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+		<!-- Google font link ^^-->
+	</head>
+
+	<body id="wallpaper">
+		<!-- START OF STARTING PAGE STATE -->
+		<div id="startingPageState" style="background: url(images/startWallpaper.png); background-size: 100%;">
+			<div id="startTitle">
+				Blackjack ICS3U
+			</div>
+
+			<div id="cntStateName">
+				Enter a Name:
+				<input type="text" id="playerName">
+			</div>
+
+			<!-- choose a character -->
+			<div id="cntCharacterSelect">
+				<div id="titleChooseCharacter">
+					Choose a Character
+				</div>
+
+				<div id="cntCharacterProfiles">
+					<div class="characters" id="images/aquaChara.jpg">
+						<img src="images/aquaChara.jpg" class="youShallNotPass">
+					</div>
+
+					<div class="characters" id="images/monsterM.jpg">
+						<img src="images/monsterM.jpg" class="youShallNotPass">
+					</div>
+
+					<div class="characters" id="images/konosuba.png">
+						<img src="images/konosuba.png" class="youShallNotPass">
+					</div>
+
+					<div class="characters" id="images/tomatoeChara.jpg">
+						<img src="images/tomatoeChara.jpg" class="youShallNotPass">
+					</div>
+					
+				</div>
+			</div>
+		</div>
+		<!-- END OF STARTING PAGE STATE -->
+
+		<!-- START OF GAME PAGE STATE -->
+		<div id="gamePageState" style="background-image: url(images/background.jpg)">
+
+			<!-- START OF DIV FOR MUSIC -->
+			<div id="cntMusic">
+				<div style="font-size: 35px; text-align: center; background-color: black; color: white;">
+					MUSIC
+				</div>
+				<div id="cntControls">
+					<button id="btnPrevious" class="groupMusic"><img src="images/prev.png" class="controls"></button>
+					<button id="btnPlay" class="groupMusic"><img src="images/play.png" class="controls"></button>
+					<button id="btnPause" class="groupMusic"><img src="images/pause.png" class="controls"></button>
+					<button id="btnNextSong" class="groupMusic"><img src="images/next.png" class="controls"></button>
+				</div>
+
+				<div id="currentlyPlaying">
+					Playing:#0 Kakegurui
+				</div>
+
+				<div id="musicList">
+					<div class="musicSelection">
+						#0 Kakegurui
+						<audio loop controls autostart="true" id="Kakegurui" class="songControls" style="width: 250px">
+						<source src="audio/Kakegurui.mp3" type="audio/mpeg">
+						</audio>
+					</div>
+					
+					<div class="musicSelection">
+						#1 SwordArtOnline
+						<audio loop controls id="SwordArtOnline" class="songControls" style="width: 250px">
+						<source src="audio/animeSAO.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#2 WakuseiRabbit
+						<audio loop controls id="WakuseiRabbit" class="songControls" style="width: 250px">
+						<source src="audio/WakuseiRabbit.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#3 PacketHero
+						<audio loop controls id="PacketHero" class="songControls" style="width: 250px">
+						<source src="audio/PacketHero.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#4 REANIMATE
+						<audio loop controls id="REANIMATE" class="songControls" style="width: 250px">
+						<source src="audio/REANIMATE.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#5 Noragami
+						<audio loop controls id="Noragami" class="songControls" style="width: 250px">
+						<source src="audio/Noragami.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#6 Noragami2
+						<audio loop controls id="Noragami2" class="songControls" style="width: 250px">
+						<source src="audio/Noragami2.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+
+					<div class="musicSelection">
+						#7 CaravanPalace
+						<audio loop controls id="CaravanPalace" class="songControls" style="width: 250px">
+						<source src="audio/CaravanPalace.mp3" class="songControls" type="audio/mpeg">
+						</audio>
+					</div>
+				</div>
+			</div>
+			<!--END OF DIV FOR MUSIC-->
+
+			<div id="cntDealerCards">
+
+			</div>
+
+			<div id="cntPlayerCards">
+
+			</div>
+
+			<div id="actions">
+				<img src="images/actionBarBackground.jpg" id="actionBarBackground">
+
+				<!-- the placeholder div is needed since when jquery fades out an element, it no longer exists, which shifts other elements to different spots. The placeholder div stops those random shifts on a fadeOut function -->
+				<div class="placeHolder">
+					<div id="cntPlaceBets" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Place Bet</div>
+						Place Bet: $<input type="text" id="txtPlaceBet" style="width: 70px" value="10">
+						<button id="btnPlaceBet">Place</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntHitHold" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Actions</div>
+						<button id="btnHold" class="btnAction">Stay</button>
+						<button id="btnHit" class="btnAction">Hit</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntRaiseBet" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Raise Bet</div>
+						Raise Bet By: $<input type="text" id="txtRaiseBet" style="width: 70px" value="0"><button id="btnRaiseBet">Raise</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntShowCards" class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Show Cards</div>
+						<button id="btnShowCards" class="btnAction">Show Cards</button>
+					</div>
+				</div>
+
+				<div class="placeHolder">
+					<div id="cntNextRound"class="actionGroup" style="background: url(images/grey.png)">
+						<div class="actionHeader">Next Round</div>
+						<button id="btnNextRound" class="btnAction">Next Round</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- work in progress anime bot -->
+			<div id="cntYumekoJabami">
+				<img id="yumekoJabami" src="images/animeGirl.gif">
+				<!-- YumekoJabami.png -->
+
+				<div id="speech">
+					<div id="textArea"></div>
+					<button id="btnNext">Next</button>
+				</div> 
+			</div>
+
+			<!-- info stuff that is kind of inportant -->
+			<div id="cntPotInfo">
+				<div id="cntPot">
+					$0
+				</div>
+
+				<div id="cntMultiply">
+					x2 In Possible Winnings
+				</div>
+			</div>
+
+			<div id="cntPlayerInfo">
+				<div id="playerNameShow">
+					
+				</div>
+
+				<div id="chosenCharacter">
+					
+				</div>
+
+				<div id="cntPlayerMoney">
+					$100
+				</div>
+			</div>
+
+			<!-- START OF DIV FOR ACHIEVEMENTS -->
+			<button id="achPermaShow">Achievement List</button>
+			
+			<div id="achPermaBox">
+				<div id="achTitle">Unlocked Achievements:</div>
+				<img src="images/ach/bigBoiEeks.png" id="achPermaClose">
+
+				<div id="cntAchDividers">
+					<div id="achCurious" class="achDivider">
+						<div class="achTypeHeader">
+							Curious...
+						</div>
+					</div>
+
+					<div id="achTutorial" class="achDivider">
+						<div class="achTypeHeader">
+							Tutorial?
+						</div>
+					</div>
+
+					<div id="achBust" class="achDivider">
+						<div class="achTypeHeader">
+							Where's The Biscuit At?
+						</div>
+					</div>
+
+					<div id="achWin" class="achDivider">
+						<div class="achTypeHeader">
+							Eating Good Tonight!
+						</div>
+					</div>
+
+					<div id="achLose" class="achDivider">
+						<div class="achTypeHeader">
+							You Win Some...
+						</div>
+					</div>
+
+					<div id="achOthers" class="achDivider">
+						<div class="achTypeHeader">
+							What Else Is There?
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- END OF DIV FOR ACHIEVEMENTS -->
+		</div>
+		<!-- END OF GAME PAGE STATE -->
+
+		<!-- START OF END PAGE -->
+		<div id="endPageState">
+			<div id="youSuck">
+				OF ALL THE PEOPLE I'VE FACED, YOU ARE BY FAR THE WORST. MAYBE FIX THAT BRAIN OF YOURS!
+			</div>
+		</div>
+		<!-- END OF END PAGE -->
+
+		<div id="madeByState">
+			<img src="images/madeBy.jpg" id="madeBy">
+		</div>
+
+		<!-- START OF ACH NOTIFICATION BOX -->
+		<div id="achNotifiction">
+			
+		</div>
+		<!-- END OF ACH NOTIFICTION BOX -->
+	</body>
+</html>

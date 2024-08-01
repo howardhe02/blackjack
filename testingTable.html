@@ -1,0 +1,132 @@
+<!-- 
+Title: Blackjack ICS3U Project
+By:Howard,Sajeiv,Kowan
+Date Started:2018/10/29
+Des:This is the html for the test table page
+ -->
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>
+			Blackjack Testing Table
+		</title>
+
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="code.js"></script>
+		<link href="https://fonts.googleapis.com/css?family=Noto+Serif" rel="stylesheet">
+		<!-- Google Font -->
+	</head>
+	<body>
+		<ul class="ul1">
+			<li class="li1">
+				<a href="index.html">HomePage</a>
+				<a href="screenshots.html">Screenshots</a>
+				<a href="rules.html">How To Play</a>
+				<a href="additionalFeatures.html">Additional Features</a>
+				<a href="testingTable.html">Testing Table</a>
+			</li>
+		</ul>
+		<img class="centerImage" src="images/testing.jpg">
+		<br>
+		<br>
+		<h1>
+			Testing Table
+		</h1>
+		<table id="scnTable">
+			<!-- title for colums -->
+			<tr>
+				<td><h3>Tested</h3></td>
+				<td><h3>Result</h3></td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>Player places a negative bet or anything that is not made of numbers</td>
+				<td>The player is prompted by the dealer to try something different</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>After a valid bet is placed, the dealer deals 2 cards, to both participants. One dealer card is face up.</td>
+				<td>The dealer has one card face up and both participants have 2 cards.</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>The player hits and get's another card as long as the player's total is less than or equal to 21.</td>
+				<td>The player can hit as many times as they want, and the round ends if their go over 21.</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>When the player decides to stay, the dealer draws another card if their total is under 16.</td>
+				<td>The dealer draws another card if their total is under 16 at the time.</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>The player cannot enter a raise higher than their placed bet</td>
+				<td>The dealer informs the player that their bet cannot be higher than their placed bet</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>The player wins if they have a higher total than the dealer but is lower or equal to 21.</td>
+				<td>The player wins</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>The player wins if the dealer's sum is greater than 21</td>
+				<td>The player wins</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>The next round button resets all variables and starts the next round</td>
+				<td>The next round starts with all variables reset</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>Actions can only be taken during their phases. i.e you can only hit during the hit phase.</td>
+				<td>All other buttons do nothing if it is not their phase.</td>
+			</tr>
+
+			<!-- test -->
+			<tr>
+				<td>The player loses when their money reaches 0 and the next round button is clicked</td>
+				<td>The player is shown the loser screen</td>
+			</tr>
+		</table>
+				
+		<h1>Other Found Bugs</h1>
+
+		<table id="scnTable">
+			<!-- first row and description -->
+			<tr>
+				<td><h3>Bug</h3></td>
+				<td><h3>Status</h3></td>
+			</tr>
+
+			<!-- bug and status -->
+			<tr>
+				<td>Entering all the players money in the place bet section allows the player to press next round immediately after and lose</td>
+				<td>FIXED</td>
+			</tr>
+
+			<!-- bug and status -->
+			<tr>
+				<td>The dealer continues with the instructions if the next button was not clicked 9 times before the place bet button was pressed</td>
+				<td>FIXED</td>
+			</tr>
+			
+			<!-- bug and status -->
+			<tr>
+				<td>If a negative bet was entered, they player could play forever and never lose</td>
+				<td>FIXED</td>
+			</tr>
+		</table>
+	</body>
+</html>

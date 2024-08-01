@@ -1,0 +1,151 @@
+/*
+Title: Blackjack ICS3U Project
+By:Howard,Sajeiv,Kowan
+Date Started:2018/10/29
+Des:This is the css for the black jack website
+*/
+
+h1,h2,h3{
+	background-color: red
+    color: red;
+    text-align: center;
+}
+h1{
+    border-style: solid;
+    border-width: 20%;
+    border-radius: 5%;
+    background-image: linear-gradient(red, orange, red);
+    border-width: 5px;
+}
+
+body{
+    margin: 0px;
+    font-family: 'Noto Serif', serif;
+}
+
+.ul1 {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    overflow: hidden;
+    background-color: #333;
+    position: relative;
+    width: 100%;
+}
+
+.li1 a{
+    display: inline;
+    color: white;
+    font-size: 1.25em ;
+    text-align: center;
+    padding: 20px 20px;
+    text-decoration: none;
+    font-family: Arial;
+}
+
+.li1 a:hover {
+    background-color: #111;
+}
+
+.centerImage{
+    width: 800px;
+    border-style: solid;
+    left: 25%;
+    border-width: 10px;
+    border-radius: 10px;
+    position: relative;
+    top: 25px;
+}
+
+.homepageBtns{
+	border-style: solid;
+    position: relative;
+    display: block;
+    color: black;
+    text-align: center;
+    width: 300px;
+    padding: 25px;
+    font-weight: 900;
+    font-size: 18px;
+    top: 50px;
+}
+
+.homepageBtns:hover{
+    background-color: red;
+}
+#homepageButtons{
+	position: relative;
+	left: 34%;
+    width: 50%;
+    height: 275px;
+}
+
+.wallpaper{
+    width:99.7%;
+    height:700px;
+    border-style: solid;
+}
+.explanation{
+    font-size: 20px;
+    border-style: solid;
+    position: relative;
+    top: 50px;
+    left: 15%;
+    width: 70%;
+    border-radius: 10px;
+    padding: 10px;
+    background-image: linear-gradient(orange, yellow, orange);
+    /*Gradient Color*/
+}
+
+.screenshotBox{
+    border-style: solid;
+    position: relative;
+    top: 50px;
+    width: 49.5%;
+    display: inline-block;
+}
+
+.cntScreenshots{
+    width: 98%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.scnImg{
+    max-width: 100%;
+    position: relative;
+    max-height: 350px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scnText{
+    position: absolute;
+}
+
+#scnTable{
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(orange, yellow, orange);
+    /*Gradient Color*/
+}
+
+td{
+    border-style: solid;
+    width: 49%;
+    font-size: 30px;
+    padding: 20px;
+}
+#picFeature{
+    position: relative;
+    left: 37%;
+}
+body{
+     background-image: linear-gradient(white, gray, white);
+     /*Gradient Color*/
+}
