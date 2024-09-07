@@ -12,8 +12,10 @@ This project is an interactive Blackjack game offering a smooth and engaging gam
 
 ## Tech Stack
 
-- **Frontend**: JavaScript, jQuery
-- **Markup/Style**: HTML/CSS
+- **Frontend**:
+  - HTML5
+  - CSS3 (styles.css)
+  - JavaScript (code.js, jQuery)
 
 ## Prerequisites
 
