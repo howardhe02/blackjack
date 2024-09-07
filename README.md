@@ -10,6 +10,11 @@ This project is an interactive Blackjack game built with HTML, CSS, JavaScript, 
 - **Scoring System:** Keep track of wins, losses, and ties with real-time score updates.
 - **Responsive Design:** Play the game on any device—whether desktop, tablet, or mobile—with an optimized experience.
 
+## Tech Stack
+
+- **Frontend**: JavaScript, jQuery
+- **Markup/Style**: HTML/CSS
+
 ## Prerequisites
 
 - A modern web browser (Chrome, Firefox, Safari, etc.)
