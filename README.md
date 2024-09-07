@@ -1,6 +1,6 @@
 # Blackjack Game
 
-This project is an interactive Blackjack game built with HTML, CSS, JavaScript, and jQuery. It offers a smooth and engaging gameplay experience with stylish visuals and animations. The game is fully responsive, making it enjoyable to play on both desktop and mobile devices.
+This project is an interactive Blackjack game offering a smooth and engaging gameplay experience with stylish visuals and animations. The game is fully responsive, making it enjoyable to play on both desktop and mobile devices.
 
 ## Features
 
